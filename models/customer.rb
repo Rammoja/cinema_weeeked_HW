@@ -35,9 +35,11 @@ class Customer
     SqlRunner.run(sql, values)
   end
 
-  def buy_tickets()
-
-
+  def buy_tickets(ticket_price)
+    @fund -= ticket_price
+    sql = "UPDATE customers SET fund = $1 WHERE id = $2"
+    values = [@fund, @id]
+    SqlRunner.run(sql, values)
   end
 
 
